@@ -21,4 +21,13 @@ public class SinhVienService {
     public List<SinhVien> getAll() {
         return lists;
     }
+
+    public void xoaSinhVien(int index) {
+        lists.remove(index);
+    }
+
+    public SinhVien detailSinhVien(int index) {
+        return lists.get(index);
+    }
+
 }

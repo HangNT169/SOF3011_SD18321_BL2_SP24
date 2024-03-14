@@ -52,10 +52,20 @@ public class SinhVienServlet extends HttpServlet {
     private void viewUpdate(HttpServletRequest request, HttpServletResponse response) {
     }
 
-    private void detail(HttpServletRequest request, HttpServletResponse response) {
+    private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String index = request.getParameter("viTri");
+        SinhVien sv = service.detailSinhVien(Integer.valueOf(index));
+        request.setAttribute("sv1",sv);
+        request.getRequestDispatcher("/buoi4/detail-sinh-vien.jsp").forward(request,response);
     }
 
-    private void remove(HttpServletRequest request, HttpServletResponse response) {
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // B1: Lay gia tri tu url xuong (phia view => servlet)
+        String index = request.getParameter("a");
+        // B2: Goi service
+        service.xoaSinhVien(Integer.valueOf(index));
+        // B3: Quay ve trang chu
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void search(HttpServletRequest request, HttpServletResponse response) {

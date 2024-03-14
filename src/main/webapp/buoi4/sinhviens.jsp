@@ -1,5 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
@@ -25,14 +25,19 @@
     </thead>
 <%--    for(Doi tuong : ten mang)--%>
     <tbody>
-        <c:forEach items="${lists}" var="a">
+        <c:forEach items="${lists}" var="a" varStatus="i">
             <tr>
-                <td>STT</td>
+                <td>${i.index}</td>
                 <td>${a.mssv}</td>
                 <td>${a.ten}</td>
                 <td>${a.diaChi}</td>
                 <td>${a.gioiTinh}</td>
                 <td>${a.tuoi}</td>
+                <td>
+                    <a href="/sinh-vien/remove?a=${i.index}">Delete</a>
+                    <a href="/sinh-vien/view-update?viTri=${i.index}">Update</a>
+                    <a href="/sinh-vien/detail?viTri=${i.index}">Detail</a>
+                </td>
             </tr>
         </c:forEach>
     </tbody>
