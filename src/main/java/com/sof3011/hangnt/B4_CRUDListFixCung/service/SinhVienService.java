@@ -30,4 +30,7 @@ public class SinhVienService {
         return lists.get(index);
     }
 
+    public void addSinhVien(SinhVien sv) {
+        lists.add(sv);
+    }
 }

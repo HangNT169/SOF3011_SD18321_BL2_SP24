@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
+import org.apache.commons.beanutils.BeanUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ public class SinhVienServlet extends HttpServlet {
         }
     }
 
-    private void viewAdd(HttpServletRequest request, HttpServletResponse response) {
+    private void viewAdd(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/buoi4/add-sinh-vien.jsp").forward(request,response);
     }
 
     private void viewUpdate(HttpServletRequest request, HttpServletResponse response) {
@@ -88,7 +91,12 @@ public class SinhVienServlet extends HttpServlet {
         }
     }
 
+    @SneakyThrows
     private void add(HttpServletRequest request, HttpServletResponse response) {
+        SinhVien sv = new SinhVien();
+        BeanUtils.populate(sv,request.getParameterMap()); // Gan gia tri cua cac o input cho doi tuong
+        service.addSinhVien(sv); // Doi tuong sv da co value
+        response.sendRedirect("/sinh-vien/hien-thi");
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) {
