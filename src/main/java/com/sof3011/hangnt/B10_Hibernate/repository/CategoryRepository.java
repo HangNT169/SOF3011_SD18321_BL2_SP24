@@ -30,45 +30,45 @@ public class CategoryRepository {
     // Add: save/saveorupdate/persist
     public void add(Category1 c){
         try{
-            // B1: bat dau transasion
-            s.beginTransaction().begin();
+            // B1: bat dau transasion dang co
+            s.getTransaction().begin();
             // B2: Add doi tuong
             s.persist(c);
             // B3: commit sau khi add xong
-            s.beginTransaction().commit();
+            s.getTransaction().commit();
         }catch (Exception e){
             // Khi add fail => rollback tro ve trang thai ban dau
-            s.beginTransaction().rollback();
+            s.getTransaction().rollback();
         }
     }
 
     // Update: saveorupdate/merge
     public void update(Category1 c){
         try{
-            // B1: bat dau transasion
-            s.beginTransaction().begin();
+            // B1: bat dau transasion dang co
+            s.getTransaction().begin();
             // B2: update doi tuong
             s.merge(c);
             // B3: commit sau khi add xong
-            s.beginTransaction().commit();
+            s.getTransaction().commit();
         }catch (Exception e){
             // Khi add fail => rollback tro ve trang thai ban dau
-            s.beginTransaction().rollback();
+            s.getTransaction().rollback();
         }
     }
 
     // Delete: delete
     public void delete(Category1 c){
         try{
-            // B1: bat dau transasion
-            s.beginTransaction().begin();
+            // B1: bat dau transasion dang co
+            s.getTransaction().begin();
             // B2: delete doi tuong
             s.delete(c);
             // B3: commit sau khi add xong
-            s.beginTransaction().commit();
+            s.getTransaction().commit();
         }catch (Exception e){
             // Khi add fail => rollback tro ve trang thai ban dau
-            s.beginTransaction().rollback();
+            s.getTransaction().rollback();
         }
     }
 
